@@ -423,16 +423,16 @@ BLACK = {
 # Charcoal: neutral (no tint) and a few steps above black, so it reads dark
 # without going jet black, and stays below the graphite set so it isn't gray.
 CHARCOAL = {
-    "base": "#17181b",  # editor
-    "shell": "#131417",  # panels, tabs, title and status bars, a hair darker
-    "surface": "#212226",
-    "line": "#1d1e21",
-    "wrap": "#1e1f22",
-    "wrap_active": "#2a2b2f",
-    "invisible": "#3a3b3f",
-    "indent": "#202124",
-    "indent_active": "#303135",
-    "selection": "#303136",
+    "base": "#1b1c20",  # editor
+    "shell": "#17181c",  # panels, tabs, title and status bars, a hair darker
+    "surface": "#25262b",
+    "line": "#212226",
+    "wrap": "#222327",
+    "wrap_active": "#2e2f34",
+    "invisible": "#3e3f44",
+    "indent": "#242529",
+    "indent_active": "#34353a",
+    "selection": "#34353b",
     # Rows lift from a dark-but-not-black shell, so smaller steps than BLACK's.
     "edge": {"hover_lift": 0.035, "selected_lift": 0.07, "fg_max_l": EDGE_FG_MAX_L, "syntax_max_l": EDGE_SYNTAX_MAX_L},
 }
