@@ -1,0 +1,7 @@
+id = "rose-pine-neutral-theme"
+name = "Rosé Pine Neutral Theme"
+version = "1.0.0"
+schema_version = 1
+authors = ["Dallas Gere"]
+description = "Rosé Pine's syntax palette on a neutral dark charcoal background."
+repository = "https://github.com/dallasgere/rose-pine-neutral-theme"
