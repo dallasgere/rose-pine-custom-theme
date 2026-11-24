@@ -64,15 +64,15 @@
         "minimap.thumb.hover_background": "#96949f45",
         "minimap.thumb.active_background": "#96949f60",
         "minimap.thumb.border": "#00000000",
-        "editor.foreground": "#d6d4e4",
+        "editor.foreground": "#c5c3d3",
         "editor.background": "#17181b",
         "editor.gutter.background": "#17181b",
         "editor.subheader.background": "#212226",
         "editor.active_line.background": "#1d1e21",
         "editor.highlighted_line.background": "#1d1e21",
-        "editor.line_number": "#64646c",
-        "editor.active_line_number": "#d6d4e4",
-        "editor.hover_line_number": "#d6d4e4",
+        "editor.line_number": "#64646d",
+        "editor.active_line_number": "#c5c3d3",
+        "editor.hover_line_number": "#c5c3d3",
         "editor.invisible": "#3a3b3f",
         "editor.wrap_guide": "#1e1f22",
         "editor.active_wrap_guide": "#2a2b2f",
@@ -83,7 +83,7 @@
         "editor.document_highlight.bracket_background": "#ebbcba1f",
         "link_text.hover": "#ebbcba",
         "terminal.background": "#17181b",
-        "terminal.foreground": "#d6d4e4",
+        "terminal.foreground": "#c5c3d3",
         "terminal.ansi.background": "#17181b",
         "terminal.bright_foreground": "#e0def4",
         "terminal.dim_foreground": "#89888f",
@@ -243,17 +243,17 @@
             "font_weight": 400
           },
           "embedded": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
           "emphasis": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
           "emphasis.strong": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
@@ -378,12 +378,12 @@
             "font_weight": 400
           },
           "label": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
           "link_text": {
-            "color": "#f6c177",
+            "color": "#f3be74",
             "font_style": "normal",
             "font_weight": 400
           },
@@ -418,12 +418,12 @@
             "font_weight": 400
           },
           "primary": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
           "property": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
@@ -473,12 +473,12 @@
             "font_weight": 400
           },
           "string": {
-            "color": "#f6c177",
+            "color": "#f3be74",
             "font_style": "normal",
             "font_weight": 400
           },
           "string.doc": {
-            "color": "#f6c177",
+            "color": "#f3be74",
             "font_style": "normal",
             "font_weight": 400
           },
@@ -493,7 +493,7 @@
             "font_weight": 400
           },
           "string.special": {
-            "color": "#f6c177",
+            "color": "#f3be74",
             "font_style": "normal",
             "font_weight": 400
           },
@@ -513,7 +513,7 @@
             "font_weight": 400
           },
           "text.literal": {
-            "color": "#f6c177",
+            "color": "#f3be74",
             "font_style": "normal",
             "font_weight": 400
           },
@@ -543,17 +543,17 @@
             "font_weight": 400
           },
           "variable": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
           "variable.member": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
           "variable.parameter": {
-            "color": "#d6d4e4",
+            "color": "#c5c3d3",
             "font_style": "normal",
             "font_weight": 400
           },
