@@ -119,22 +119,22 @@
         "success.background": "#8fbf961a",
         "success.border": "#8fbf9666",
         "created": "#8fbf96",
-        "created.background": "#8fbf961a",
+        "created.background": "#8fbf961f",
         "created.border": "#8fbf9666",
         "modified": "#f6c177",
-        "modified.background": "#f6c1771a",
+        "modified.background": "#f6c1771f",
         "modified.border": "#f6c17766",
         "deleted": "#eb6f92",
-        "deleted.background": "#eb6f921a",
+        "deleted.background": "#eb6f921f",
         "deleted.border": "#eb6f9266",
-        "renamed": "#9ccfd8",
-        "renamed.background": "#9ccfd81a",
-        "renamed.border": "#9ccfd866",
-        "conflict": "#eb6f92",
-        "conflict.background": "#eb6f921a",
-        "conflict.border": "#eb6f9266",
+        "renamed": "#8fbf96",
+        "renamed.background": "#8fbf961f",
+        "renamed.border": "#8fbf9666",
+        "conflict": "#e89c80",
+        "conflict.background": "#e89c801f",
+        "conflict.border": "#e89c8066",
         "ignored": "#6e6a86",
-        "ignored.background": "#6e6a861a",
+        "ignored.background": "#6e6a861f",
         "ignored.border": "#6e6a8666",
         "hidden": "#7c7b83",
         "hidden.background": "#7c7b831a",
@@ -145,11 +145,11 @@
         "predictive": "#96949f",
         "predictive.background": "#96949f1a",
         "predictive.border": "#96949f66",
-        "version_control.added": "#536c58",
-        "version_control.modified": "#866c49",
-        "version_control.deleted": "#814456",
-        "version_control.renamed": "#5a747a",
-        "version_control.conflict": "#814456",
+        "version_control.added": "#65856b",
+        "version_control.modified": "#457486",
+        "version_control.deleted": "#a15168",
+        "version_control.renamed": "#457486",
+        "version_control.conflict": "#9f6e5d",
         "version_control.ignored": "#6e6a86",
         "players": [
           {
@@ -567,7 +567,9 @@
             "font_style": "normal",
             "font_weight": 400
           }
-        }
+        },
+        "version_control.word_added": "#65856b47",
+        "version_control.word_deleted": "#a1516847"
       }
     }
   ]
