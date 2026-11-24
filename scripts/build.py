@@ -434,7 +434,8 @@ CHARCOAL = {
     "indent_active": "#34353a",
     "selection": "#34353b",
     # Rows lift from a dark-but-not-black shell, so smaller steps than BLACK's.
-    "edge": {"hover_lift": 0.035, "selected_lift": 0.07, "fg_max_l": EDGE_FG_MAX_L, "syntax_max_l": EDGE_SYNTAX_MAX_L},
+    # Keep colored syntax calmer than plain white text while holding solid contrast.
+    "edge": {"hover_lift": 0.035, "selected_lift": 0.07, "fg_max_l": EDGE_FG_MAX_L, "syntax_max_l": 0.775},
 }
 BLACK_EDGE = {
     "shell_drop": 0.0, "shell_floor": 0.0,  # let the shell and editor both sit at pure black
