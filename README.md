@@ -1,26 +1,25 @@
-# Rosé Pine Neutral Theme
+# Rosé Pine Custom Theme
 
-Rosé Pine syntax palette on a neutral dark charcoal background for [Zed](https://zed.dev), generated from the [Vine](https://github.com/dallasgere/vine) VS Code theme.
+Five curated dark **Rosé Pine** directions for [Zed](https://zed.dev) (each in **Bordered** and **Unbordered** styles — 10 variants total) packaged in a single `themes/rose-pine.json` file, with Rosé Pine Moon's richer syntax hues, harmonized git diff colors, clean file explorer selection, legible whitespace dots, and a `#ffffff` cursor.
+
+## Variants (10 total)
+
+- **Rosé Pine** / **Rosé Pine Unbordered** — Traditional twilight plum (`#191724`)
+- **Rosé Pine: Espresso** / **Rosé Pine: Espresso Unbordered** — Warm smoked cocoa (`#1c1a19`)
+- **Rosé Pine: Pine** / **Rosé Pine: Pine Unbordered** — Deep evergreen slate (`#151c1e`)
+- **Rosé Pine: Ink** / **Rosé Pine: Ink Unbordered** — Pure neutral graphite (`#19191a`)
+- **Rosé Pine: Dusk** / **Rosé Pine: Dusk Unbordered** — Dark neutral charcoal with a hint of warm taupe (`#1d1b1f`)
 
 ## Install locally
 
 1. In Zed, open the command palette and run `zed: install dev extension`.
 2. Select this folder.
-3. Run `theme selector: toggle` and pick `Rosé Pine: Neutral`.
+3. Run `theme selector: toggle` and pick any `Rosé Pine` variant.
 
-Or copy the files in `themes/` into `~/.config/zed/themes/`.
+Or copy `themes/rose-pine.json` into `~/.config/zed/themes/`.
 
 ## Regenerating
 
-The theme files are generated from the Rosé Pine: Neutral VS Code theme in the [Vine](https://github.com/dallasgere/vine) repo:
-
 ```bash
-python3 scripts/build.py ../vine/themes
+python3 scripts/build.py
 ```
-
-The script maps each VS Code workbench color to its closest Zed equivalent, resolves every Zed syntax capture against the VS Code `tokenColors` and `semanticTokenColors` rules, and runs a contrast pass so surfaces, dividers, and syntax stay crisp and readable.
-
-## Differences from VS Code
-
-- Zed highlights with tree-sitter rather than TextMate grammars, so some language-specific distinctions collapse to one color per capture.
-- Zed theme syntax styles cannot underline or strike through text, so invalid and deprecated code use color only.

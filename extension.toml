@@ -1,7 +1,7 @@
-id = "rose-pine-neutral-theme"
-name = "Rosé Pine Neutral Theme"
-version = "1.0.0"
+id = "rose-pine-custom-theme"
+name = "Rosé Pine Custom Theme"
+version = "2.0.0"
 schema_version = 1
 authors = ["Dallas Gere"]
-description = "Rosé Pine's syntax palette on a neutral dark charcoal background."
-repository = "https://github.com/dallasgere/rose-pine-neutral-theme"
+description = "Rosé Pine themes for Zed (Traditional, Espresso, Pine, Ink, and Dusk — both bordered and unbordered) in a single file."
+repository = "https://github.com/dallasgere/rose-pine-custom-theme"
