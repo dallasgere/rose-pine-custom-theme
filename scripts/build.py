@@ -279,15 +279,15 @@ ROSE = {
     "shell": "#191b1f",  # panels, tabs, title and status bars
     "surface": "#2a2c31",  # popovers, inputs, inlay hints
     "text": "#d6d4e4",  # a touch under Rosé Pine's #e0def4 so plain code doesn't glare
-    "subtle": "#908caa",
-    "muted": "#6e6a86",
-    "love": "#eb6f92",
-    "gold": "#f6c177",
-    "rose": "#ebbcba",
-    "pine": "#5ea5c0",  # pine, lifted so keywords stay readable on the dark base
-    "foam": "#9ccfd8",
-    "iris": "#c4a7e7",
-    "green": "#8fbf96",
+    "subtle": "#908caa",  # official Rosé Pine subtle
+    "muted": "#6e6a86",  # official Rosé Pine muted
+    "love": "#e6678b",  # rich berry-crimson (from official #eb6f92)
+    "gold": "#e6ab58",  # rich honey-gold (from official #f6c177)
+    "rose": "#dfa5a3",  # rich blush-rose (from official #ebbcba)
+    "pine": "#3b829d",  # deep Rosé Pine teal (close to official #31748f, readable on charcoal)
+    "foam": "#7ebec9",  # rich seafoam (from official #9ccfd8)
+    "iris": "#b896e3",  # rich lavender-iris (from official #c4a7e7)
+    "green": "#7eb888",  # rich sage green
 }
 ROSE_BG = "charcoal"  # Rosé Pine: Neutral background: "charcoal", "black" or "graphite"
 
@@ -342,19 +342,19 @@ PALETTES["rose-pine-neutral"] = {
                            "string.escape", "string.regex"),
             ROSE["subtle"]: ("operator", "punctuation", "punctuation.bracket", "punctuation.delimiter",
                              "punctuation.list_marker", "punctuation.markup", "punctuation.special"),
-            # Functions alone get rose, so calls stand out from values.
-            ROSE["rose"]: ("function", "function.builtin", "function.call", "function.definition",
+            # Functions get rose; built-ins get love (matching support.function in rose-pine/vscode).
+            ROSE["rose"]: ("function", "function.call", "function.definition",
                            "function.method", "function.method.call"),
-            ROSE["love"]: ("function.special", "diff.minus"),
+            ROSE["love"]: ("function.builtin", "function.special", "diff.minus"),
             ROSE["green"]: ("diff.plus",),
             ROSE["gold"]: ("string", "string.doc", "string.special", "text.literal", "link_text"),
-            # Literal values (numbers, booleans, constants) in iris, distinct from functions.
+            # Literal values, attributes, and parameters in iris (matching rose-pine/vscode).
             ROSE["iris"]: ("number", "boolean", "constant", "constant.builtin", "variant", "enum",
-                           "string.special.symbol", "variable.special", "attribute", "selector",
-                           "selector.pseudo"),
+                           "string.special.symbol", "variable.special", "variable.parameter",
+                           "attribute", "selector", "selector.pseudo"),
             ROSE["foam"]: ("type", "type.builtin", "type.interface", "type.parameter", "constructor",
                            "namespace", "tag", "tag.doctype", "title", "property.json_key", "link_uri"),
-            ROSE["text"]: ("variable", "variable.parameter", "variable.member", "property", "label",
+            ROSE["text"]: ("variable", "variable.member", "property", "label",
                            "embedded", "emphasis", "emphasis.strong", "primary"),
         }.items() for k in ks},
     },
@@ -434,8 +434,12 @@ CHARCOAL = {
     "indent_active": "#34353a",
     "selection": "#34353b",
     # Rows lift from a dark-but-not-black shell, so smaller steps than BLACK's.
-    # Keep colored syntax calmer than plain white text while holding solid contrast.
-    "edge": {"hover_lift": 0.035, "selected_lift": 0.07, "fg_max_l": EDGE_FG_MAX_L, "syntax_max_l": 0.775},
+    # Keep colored syntax calmer than plain white text and preserve deep Rosé Pine hues (like pine #3b829d).
+    "edge": {
+        "hover_lift": 0.035, "selected_lift": 0.07,
+        "fg_max_l": EDGE_FG_MAX_L, "syntax_max_l": 0.775,
+        "syntax_min": 4.0, "comment_min": 3.3,
+    },
 }
 BLACK_EDGE = {
     "shell_drop": 0.0, "shell_floor": 0.0,  # let the shell and editor both sit at pure black
@@ -475,14 +479,14 @@ if ROSE_BG in ("black", "charcoal"):
     PALETTES["rose-pine-neutral"] = black(PALETTES["rose-pine-neutral"], bg=BLACK if ROSE_BG == "black" else CHARCOAL)
 
 THEME_GIT = {
-    "added": "#8fbf96",
-    "modified": "#f6c177",
-    "deleted": "#eb6f92",
-    "conflict": "#e89c80",
-    "ignored": "#6e6a86",
-    "gutter_added": "#8fbf96",
-    "gutter_modified": "#5ea5c0",
-    "gutter_deleted": "#eb6f92",
+    "added": ROSE["green"],
+    "modified": ROSE["gold"],
+    "deleted": ROSE["love"],
+    "conflict": "#e09276",
+    "ignored": ROSE["muted"],
+    "gutter_added": ROSE["green"],
+    "gutter_modified": ROSE["pine"],
+    "gutter_deleted": ROSE["love"],
 }
 
 _base = PALETTES.get("rose-pine-neutral", {})
@@ -1043,11 +1047,13 @@ def sharpen(style, palette=None):
             style["version_control.word_deleted"] = style["version_control.deleted"][:7] + "47"
 
     # Syntax: gentle saturation, readable floor, and a ceiling so bright whites/tokens don't glare.
+    comment_min = edge.get("comment_min", EDGE_COMMENT)
+    syntax_min = edge.get("syntax_min", EDGE_SYNTAX_MIN)
     for key, entry in style["syntax"].items():
         if key in ("comment", "comment.doc"):
-            entry["color"] = lift_to(entry["color"], editor_bg, EDGE_COMMENT)
+            entry["color"] = lift_to(entry["color"], editor_bg, comment_min)
         elif key not in ("hint", "predictive"):
-            col = lift_to(entry["color"], editor_bg, EDGE_SYNTAX_MIN, chroma)
+            col = lift_to(entry["color"], editor_bg, syntax_min, chroma)
             # Keep neutral/white tokens at the softer foreground ceiling, colored tokens at syntax_max_l.
             L, a, b = to_oklab(rgb(col))
             limit = fg_max_l if (a * a + b * b) ** 0.5 < 0.03 else syntax_max_l
