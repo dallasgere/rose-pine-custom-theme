@@ -278,15 +278,15 @@ ROSE = {
     "base": "#1e2024",  # editor
     "shell": "#191b1f",  # panels, tabs, title and status bars
     "surface": "#2a2c31",  # popovers, inputs, inlay hints
-    "text": "#d6d4e4",  # a touch under Rosé Pine's #e0def4 so plain code doesn't glare
+    "text": "#b8b6c8",  # toned-down Rosé Pine text so white balances with syntax colors
     "subtle": "#908caa",  # official Rosé Pine subtle
-    "muted": "#6e6a86",  # official Rosé Pine muted
-    "love": "#e6678b",  # rich berry-crimson (from official #eb6f92)
-    "gold": "#e6ab58",  # rich honey-gold (from official #f6c177)
-    "rose": "#dfa5a3",  # rich blush-rose (from official #ebbcba)
-    "pine": "#3b829d",  # deep Rosé Pine teal (close to official #31748f, readable on charcoal)
-    "foam": "#7ebec9",  # rich seafoam (from official #9ccfd8)
-    "iris": "#b896e3",  # rich lavender-iris (from official #c4a7e7)
+    "muted": "#726e8b",  # official Rosé Pine muted, slightly lifted for charcoal
+    "love": "#e56b8e",  # rich berry-crimson (from official #eb6f92)
+    "gold": "#e5ab58",  # rich honey-gold (from official #f6c177)
+    "rose": "#e6a2a0",  # warm blush-rose (distinct from white text)
+    "pine": "#4d96b3",  # deep Rosé Pine teal, readable enough to anchor control flow
+    "foam": "#84c2cd",  # rich seafoam (from official #9ccfd8)
+    "iris": "#bd9be6",  # rich lavender-iris (from official #c4a7e7)
     "green": "#7eb888",  # rich sage green
 }
 ROSE_BG = "charcoal"  # Rosé Pine: Neutral background: "charcoal", "black" or "graphite"
@@ -334,28 +334,32 @@ PALETTES["rose-pine-neutral"] = {
     "syntax": {
         **{k: c for c, ks in {
             ROSE["muted"]: ("comment", "comment.doc"),
-            # Keywords in pine; operators and punctuation step back so keywords don't flood the line.
+            # Keywords in rich pine teal; operators and punctuation step back to subtle.
             ROSE["pine"]: ("keyword", "keyword.conditional", "keyword.control", "keyword.coroutine",
-                           "keyword.directive", "keyword.exception", "keyword.export", "keyword.function",
+                           "keyword.directive", "keyword.export", "keyword.function",
                            "keyword.import", "keyword.modifier", "keyword.repeat", "keyword.return",
                            "keyword.storage", "keyword.type", "keyword.operator", "preproc",
                            "string.escape", "string.regex"),
             ROSE["subtle"]: ("operator", "punctuation", "punctuation.bracket", "punctuation.delimiter",
                              "punctuation.list_marker", "punctuation.markup", "punctuation.special"),
-            # Functions get rose; built-ins get love (matching support.function in rose-pine/vscode).
+            # Functions & methods in warm blush-rose so calls stand out clearly.
             ROSE["rose"]: ("function", "function.call", "function.definition",
                            "function.method", "function.method.call"),
-            ROSE["love"]: ("function.builtin", "function.special", "diff.minus"),
+            # Love (berry-crimson) anchors `this`, booleans/null/undefined, exceptions, and built-ins.
+            ROSE["love"]: ("variable.special", "boolean", "constant.builtin", "keyword.exception",
+                           "function.builtin", "function.special", "diff.minus"),
             ROSE["green"]: ("diff.plus",),
-            ROSE["gold"]: ("string", "string.doc", "string.special", "text.literal", "link_text"),
-            # Literal values, attributes, and parameters in iris (matching rose-pine/vscode).
-            ROSE["iris"]: ("number", "boolean", "constant", "constant.builtin", "variant", "enum",
-                           "string.special.symbol", "variable.special", "variable.parameter",
-                           "attribute", "selector", "selector.pseudo"),
+            # Strings and numbers in warm honey-gold.
+            ROSE["gold"]: ("string", "string.doc", "string.special", "text.literal", "link_text", "number"),
+            # Parameters, constants, enums, and attributes in lavender-iris.
+            ROSE["iris"]: ("constant", "variant", "enum", "string.special.symbol",
+                           "variable.parameter", "attribute", "selector", "selector.pseudo"),
+            # Types, tags, and member properties in seafoam so `a.b.c` chains read as structure.
             ROSE["foam"]: ("type", "type.builtin", "type.interface", "type.parameter", "constructor",
-                           "namespace", "tag", "tag.doctype", "title", "property.json_key", "link_uri"),
-            ROSE["text"]: ("variable", "variable.member", "property", "label",
-                           "embedded", "emphasis", "emphasis.strong", "primary"),
+                           "namespace", "tag", "tag.doctype", "title", "property", "variable.member",
+                           "property.json_key", "link_uri"),
+            # Local variables stay in soft off-white.
+            ROSE["text"]: ("variable", "label", "embedded", "emphasis", "emphasis.strong", "primary"),
         }.items() for k in ks},
     },
     "edge": {"shell_drop": 0.02, "vc_strength": 0.5},
@@ -434,11 +438,11 @@ CHARCOAL = {
     "indent_active": "#34353a",
     "selection": "#34353b",
     # Rows lift from a dark-but-not-black shell, so smaller steps than BLACK's.
-    # Keep colored syntax calmer than plain white text and preserve deep Rosé Pine hues (like pine #3b829d).
+    # Keep colored syntax and white text balanced and preserve rich Rosé Pine hues.
     "edge": {
         "hover_lift": 0.035, "selected_lift": 0.07,
-        "fg_max_l": EDGE_FG_MAX_L, "syntax_max_l": 0.775,
-        "syntax_min": 4.0, "comment_min": 3.3,
+        "fg_max_l": 0.785, "syntax_max_l": 0.78,
+        "syntax_min": 4.5, "comment_min": 3.5,
     },
 }
 BLACK_EDGE = {
