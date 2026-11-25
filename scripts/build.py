@@ -289,7 +289,7 @@ ROSE = {
     "iris": "#bd9be6",  # rich lavender-iris (from official #c4a7e7)
     "green": "#7eb888",  # rich sage green
 }
-ROSE_BG = "charcoal"  # Rosé Pine: Neutral background: "charcoal", "black" or "graphite"
+ROSE_BG = "obsidian"  # Rosé Pine: Neutral background: "obsidian", "charcoal", "black" or "graphite"
 
 PALETTES["rose-pine-neutral"] = {
     "chroma": 1.0,  # keep Rosé Pine's soft pastels, no saturation boost
@@ -445,6 +445,25 @@ CHARCOAL = {
         "syntax_min": 4.5, "comment_min": 3.5,
     },
 }
+# Near-black obsidian: unmistakably black while keeping a subtle sidebar/editor step.
+OBSIDIAN = {
+    "base": "#121316",  # editor
+    "shell": "#0e0f12",  # panels, tabs, title and status bars
+    "surface": "#1c1d21",  # popovers, menus, inputs, inlay hints
+    "line": "#18191d",  # current line
+    "wrap": "#1a1b1f",
+    "wrap_active": "#25262b",
+    "invisible": "#34353a",
+    "indent": "#1a1b1f",
+    "indent_active": "#2a2b30",
+    "selection": "#2a2c34",
+    "edge": {
+        "hover_lift": 0.038, "selected_lift": 0.075,
+        "border": 1.25, "border_variant": 1.12,
+        "fg_max_l": 0.775, "syntax_max_l": 0.77,
+        "syntax_min": 4.5, "comment_min": 3.5,
+    },
+}
 BLACK_EDGE = {
     "shell_drop": 0.0, "shell_floor": 0.0,  # let the shell and editor both sit at pure black
     "border": 1.2, "border_variant": 1.1,  # faint dividers between panels and tabs
@@ -479,8 +498,9 @@ def black(config, name=None, file=None, bg=BLACK):
     return out
 
 
-if ROSE_BG in ("black", "charcoal"):
-    PALETTES["rose-pine-neutral"] = black(PALETTES["rose-pine-neutral"], bg=BLACK if ROSE_BG == "black" else CHARCOAL)
+if ROSE_BG in ("black", "charcoal", "obsidian"):
+    _bg_map = {"black": BLACK, "charcoal": CHARCOAL, "obsidian": OBSIDIAN}
+    PALETTES["rose-pine-neutral"] = black(PALETTES["rose-pine-neutral"], bg=_bg_map[ROSE_BG])
 
 THEME_GIT = {
     "added": ROSE["green"],
