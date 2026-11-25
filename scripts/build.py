@@ -447,16 +447,16 @@ CHARCOAL = {
 }
 # Near-black obsidian: unmistakably black while keeping a subtle sidebar/editor step.
 OBSIDIAN = {
-    "base": "#121316",  # editor
-    "shell": "#0e0f12",  # panels, tabs, title and status bars
-    "surface": "#1c1d21",  # popovers, menus, inputs, inlay hints
-    "line": "#18191d",  # current line
-    "wrap": "#1a1b1f",
-    "wrap_active": "#25262b",
-    "invisible": "#34353a",
-    "indent": "#1a1b1f",
-    "indent_active": "#2a2b30",
-    "selection": "#2a2c34",
+    "base": "#17181c",  # editor
+    "shell": "#131418",  # panels, tabs, title and status bars
+    "surface": "#212227",  # popovers, menus, inputs, inlay hints
+    "line": "#1d1e23",  # current line
+    "wrap": "#1f2025",
+    "wrap_active": "#2a2b31",
+    "invisible": "#393a40",
+    "indent": "#1f2025",
+    "indent_active": "#2f3036",
+    "selection": "#2f313a",
     "edge": {
         "hover_lift": 0.038, "selected_lift": 0.075,
         "border": 1.25, "border_variant": 1.12,
