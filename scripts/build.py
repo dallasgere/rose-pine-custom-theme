@@ -29,12 +29,12 @@ def tok(color, style="normal", weight=400):
     return {"color": color, "font_style": style, "font_weight": weight}
 
 
-# Rosé Pine Moon's richer warm rose (#ea9a97) and clearer teal pine (#3e8fb0).
+# Official Rosé Pine (Main) palette from rose-pine/vscode.
 RP = {
     "love": "#eb6f92",
     "gold": "#f6c177",
-    "rose": "#ea9a97",
-    "pine": "#3e8fb0",
+    "rose": "#ebbcba",
+    "pine": "#31748f",
     "foam": "#9ccfd8",
     "iris": "#c4a7e7",
     "green": "#8cc296",
@@ -124,6 +124,18 @@ BASES = [
 ]
 
 
+
+def subheader_bg(editor_bg, fg):
+    """Clearly distinct multibuffer / git diff file header background."""
+    def _mix(a, t, b):
+        ca = [int(a[i : i + 2], 16) for i in (1, 3, 5)]
+        cb = [int(b[i : i + 2], 16) for i in (1, 3, 5)]
+        return "#" + "".join(f"{round(x * t + y * (1 - t)):02x}" for x, y in zip(ca, cb))
+    is_light = int(editor_bg[1:3], 16) > 128
+    # Lift cleanly on dark themes (14% toward fg), darken slightly on light themes (10% toward fg).
+    return _mix(fg[:7], 0.10 if is_light else 0.14, editor_bg[:7])
+
+
 def build_variant(ex, unbordered=False):
     ed = ex["editor"]
     sh = ed if unbordered else ex["shell"]
@@ -140,38 +152,45 @@ def build_variant(ex, unbordered=False):
     syntax_groups = [
         (tok(ex["muted"], "italic"), ("comment", "comment.doc")),
         (tok(ex["muted"]), ("hint", "predictive")),
+        # Pine (#31748f): keywords, storage, `this`, constants (matching rose-pine/vscode)
         (tok(RP["pine"]), (
             "keyword", "keyword.conditional", "keyword.control", "keyword.coroutine",
-            "keyword.directive", "keyword.export", "keyword.function", "keyword.import",
-            "keyword.modifier", "keyword.repeat", "keyword.return", "keyword.storage",
-            "keyword.type", "keyword.operator", "preproc", "string.escape", "string.regex",
+            "keyword.directive", "keyword.exception", "keyword.export", "keyword.function",
+            "keyword.import", "keyword.modifier", "keyword.repeat", "keyword.return",
+            "keyword.storage", "keyword.type", "keyword.operator", "preproc",
+            "variable.special", "constant", "string.escape", "string.regex",
         )),
         (tok(ex["subtle"]), (
             "operator", "punctuation", "punctuation.bracket", "punctuation.delimiter",
             "punctuation.list_marker", "punctuation.markup", "punctuation.special",
         )),
+        # Rose (#ebbcba): functions, numbers, booleans, null/undefined (matching rose-pine/vscode)
         (tok(RP["rose"]), (
             "function", "function.call", "function.definition", "function.method", "function.method.call",
+            "number", "boolean", "constant.builtin", "variant",
         )),
+        # Love (#eb6f92): built-in/support functions, diff minus (matching rose-pine/vscode)
         (tok(RP["love"]), (
-            "variable.special", "boolean", "constant.builtin", "keyword.exception",
             "function.builtin", "function.special", "diff.minus",
         )),
         (tok(RP["green"]), ("diff.plus",)),
+        # Gold (#f6c177): strings (matching rose-pine/vscode)
         (tok(RP["gold"]), (
-            "string", "string.doc", "string.special", "text.literal", "link_text", "number",
+            "string", "string.doc", "string.special", "text.literal", "link_text",
         )),
+        # Iris (#c4a7e7): parameters, attributes, selectors (matching rose-pine/vscode)
         (tok(RP["iris"]), (
-            "constant", "variant", "enum", "string.special.symbol",
-            "variable.parameter", "attribute", "selector", "selector.pseudo",
+            "variable.parameter", "attribute", "selector", "selector.pseudo", "string.special.symbol",
         )),
+        # Foam (#9ccfd8): types, tags, namespaces, JSON keys (matching rose-pine/vscode)
         (tok(RP["foam"]), (
             "type", "type.builtin", "type.interface", "type.parameter", "constructor",
-            "namespace", "tag", "tag.doctype", "title", "property", "variable.member",
-            "property.json_key", "link_uri",
+            "namespace", "enum", "tag", "tag.doctype", "title", "property.json_key", "link_uri",
         )),
+        # Text: variables & properties (matching rose-pine/vscode)
         (tok(ex["text"]), (
-            "variable", "label", "embedded", "emphasis", "emphasis.strong", "primary",
+            "variable", "variable.member", "property", "label", "embedded",
+            "emphasis", "emphasis.strong", "primary",
         )),
     ]
     syntax = {k: dict(v) for v, ks in syntax_groups for k in ks}
@@ -241,7 +260,7 @@ def build_variant(ex, unbordered=False):
             "editor.foreground": ex["text"],
             "editor.background": ed,
             "editor.gutter.background": ed,
-            "editor.subheader.background": el,
+            "editor.subheader.background": subheader_bg(ed, ex["text"]),
             "editor.active_line.background": ex["line"],
             "editor.highlighted_line.background": ex["line"],
             "editor.line_number": ex["line_num"],
